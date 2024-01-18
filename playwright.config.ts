@@ -11,7 +11,8 @@ require('dotenv').config();
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: './tests', 
+  //testDir: './tests-examples', 
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -48,6 +49,7 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
 
+    //TODO add all-browsers-and-tests blocks (ch2.2 1:55-2:55)
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

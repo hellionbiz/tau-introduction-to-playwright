@@ -11,7 +11,7 @@ const TODO_ITEMS = [
 ];
 
 test.describe('New Todo', () => {
-  test('should allow me to add todo items', async ({ page }) => {
+  test('@smoke - should allow me to add todo items', async ({ page }) => {
     // create a new todo locator
     const newTodo = page.getByPlaceholder('What needs to be done?');
 
@@ -21,7 +21,7 @@ test.describe('New Todo', () => {
 
     // Make sure the list only has one todo item.
     await expect(page.getByTestId('todo-title')).toHaveText([
-      TODO_ITEMS[0]
+      TODO_ITEMS[1]
     ]);
 
     // Create 2nd todo.
@@ -349,7 +349,7 @@ test.describe('Routing', () => {
     await expect(todoItem).toHaveText([TODO_ITEMS[0], TODO_ITEMS[2]]);
   });
 
-  test('should respect the back button', async ({ page }) => {
+  test('@smoke - should respect the back button', async ({ page }) => {
     const todoItem = page.getByTestId('todo-item'); 
     await page.getByTestId('todo-item').nth(1).getByRole('checkbox').check();
 
@@ -375,14 +375,14 @@ test.describe('Routing', () => {
     await expect(todoItem).toHaveCount(3);
   });
 
-  test('should allow me to display completed items', async ({ page }) => {
+  test('@smoke - should allow me to display completed items', async ({ page }) => {
     await page.getByTestId('todo-item').nth(1).getByRole('checkbox').check();
     await checkNumberOfCompletedTodosInLocalStorage(page, 1);
     await page.getByRole('link', { name: 'Completed' }).click();
     await expect(page.getByTestId('todo-item')).toHaveCount(1);
   });
 
-  test('should allow me to display all items', async ({ page }) => {
+  test('@smoke - should allow me to display all items', async ({ page }) => {
     await page.getByTestId('todo-item').nth(1).getByRole('checkbox').check();
     await checkNumberOfCompletedTodosInLocalStorage(page, 1);
     await page.getByRole('link', { name: 'Active' }).click();
@@ -391,7 +391,7 @@ test.describe('Routing', () => {
     await expect(page.getByTestId('todo-item')).toHaveCount(3);
   });
 
-  test('should highlight the currently applied filter', async ({ page }) => {
+  test('@smoke - should highlight the currently applied filter', async ({ page }) => {
     await expect(page.getByRole('link', { name: 'All' })).toHaveClass('selected');
     
     //create locators for active and completed links
